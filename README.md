@@ -1,8 +1,14 @@
 
-# Snowflake Streaming - Sparkify DWH 
+# Snowflake Streaming – Sparkify DWH
 
-This repo is my ides to build a data warehouse in **Snowflake**.  
-Main idea: move raw JSON from S3 into tables, while using Snowflake’s **streams** and **tasks** so new data keeps flowing automatically.
+This repository implements a Snowflake data warehouse that ingests raw JSON from Amazon S3 and loads it into analytic tables using **streams** (change data capture) and **tasks** (scheduled execution). External stages/external tables are used to read files in place; semi-structured data is stored and parsed via the `VARIANT` type. 
+
+## Focus
+
+* **Streams for incremental processing**: Streams track inserts/updates/deletes since the last offset, enabling MERGE-based loads instead of full reloads. 
+* **Tasks for orchestration**: Tasks run SQL or procedures on a schedule to automate pipeline steps. 
+* **Handling JSON with `VARIANT`**: Semi-structured data is stored in `VARIANT` and queried/typed with built-in functions.
+* **External data access**: External **stages** reference S3 and **external tables** allow querying files as table rows (typically a single `VARIANT` column) before loading.
 
 ---
 
@@ -13,8 +19,6 @@ Main idea: move raw JSON from S3 into tables, while using Snowflake’s **stream
 * **Handle straight-up JSON** – store it in `VARIANT`, then parse with easy SQL (no extra ETL tool)
 
 * **Practice external stages/integration** – query files right out of S3 and copy them in 
-
-* Keep the structure *simple* (one `sql/` folder, clear order), because recruiters don’t want to click a maze.
 
 ---
 
