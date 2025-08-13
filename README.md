@@ -27,13 +27,13 @@ This repository implements a Snowflake data warehouse that ingests raw JSON from
 ```
 
 sql/
-|-- warehouse, DB, schemas
-|-- file format + S3 stage
-|-- raw tables + pipes
-|-- parsed staging tables + streams
-|-- star-schema tables + streams
-|-- tasks that MERGE into prod tables
-|-- scripts I got from the Udacity starter bucket
+|-- 00_setup_wh_db_schemas.sql
+|-- 01_external_file_format_and_stages.sql
+|-- 02_raw_tables_and_pipes.sql
+|-- 03_staging_tables_and_streams.sql
+|-- 04_production_tables_and_streams.sql
+|-- 05_merge_into_production.sql
+|-- 06_reference_udacity_bucket.sql
 
 ````
 
